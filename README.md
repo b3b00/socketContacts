@@ -1,1 +1,1 @@
-this is a simple Node.js / Sails.js / Angular.js application just for testing
+simple contacts management webapp based on websocket (sailsjs, angularjs, html5, javascript)
