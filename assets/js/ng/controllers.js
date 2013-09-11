@@ -33,7 +33,7 @@ function ContactsCtrl($rootScope, $http, $dialog) { //, Contact) {
     $rootScope.getAll = getAll;
 
     rmContact = function (id) {
-        $rootScope.socketService().emit('removeContact',id);
+        $rootScope.socketService.emit('removeContact',id);
     }
 
     $rootScope.rmContact = rmContact;
@@ -69,7 +69,7 @@ function ContactsCtrl($rootScope, $http, $dialog) { //, Contact) {
         d.open().then(function (result) {
             console.log(result);
             if (result && result.firstName && result.lastName && result.phoneNumber) {                
-				$rootScope.socketService().emit('addContact',result);
+				$rootScope.socketService.emit('addContact',result);
             }
 			
             });
@@ -131,7 +131,7 @@ function ContactsCtrl($rootScope, $http, $dialog) { //, Contact) {
 			// TODO 
             if (result && result.id && result.firstName && result.lastName && result.phoneNumber) {                
 				console.log("emiting [editContact]");	
-				$rootScope.socketService().emit('editContact',result);
+				$rootScope.socketService.emit('editContact',result);
             }
 			
             });
@@ -165,69 +165,12 @@ function ContactsCtrl($rootScope, $http, $dialog) { //, Contact) {
     // -------------------- EDIT DIALOG END ---------------------------
 
 	// -------------------- SOCKET START ---------------------------
-
-	$rootScope.socketService = function() {
-		var $socket;
-		$socket = io.connect("http://localhost:1336");
-		$socket.on("connect", function(stream) {
-			console.log("someone connected!");
 	
-			$socket.on('connectedUsers', function(data) {
-				console.log("connected users: ", data);
-				return $rootScope.$apply(function() {
-					return $rootScope.connectedUsers = data;
-				});
-			});
-
-
-			$socket.on("setAll", function(data) {				      								
-				return $rootScope.$apply(function() {
-					contact = data.contact;		
-					//$rootScope.message = '[INIT] '+data.contacts.length+' contacts';
-					console.log(data);
-					return $rootScope.contacts = data.contacts;
-				});
-			});
-
-			$socket.on("addContact", function(data) {        										
-				return $rootScope.$apply(function() {
-					contact = data.contact;		
-					//$rootScope.message = '[ADD] :: '+contact.firstName+' '+contact.lastName+ ' / '+contact.phoneNumber;
-					console.log(data);
-					return $rootScope.contacts = data.contacts;
-				});				
-			});      
-
-			$socket.on("removeContact", function(data) {												
-				return $rootScope.$apply(function() {
-					contact = data.contact;
-					// $rootScope.message = '[DEL] :: '+contact.firstName+' '+contact.lastName;
-					return $rootScope.contacts = data.contacts;
-				});
-			});
-			
-			$socket.on("editContact", function(data) {												
-				return $rootScope.$apply(function() {
-					contact = data.contact;
-					// $rootScope.message = '[DEL] :: '+contact.firstName+' '+contact.lastName;
-					return $rootScope.contacts = data.contacts;
-				});
-			});
-
-			$socket.on("disconnect", function(stream) {
-				return console.log("someone disconnected");
-			});
-
-		});
-	
-		return $socket;
-	}
+	$rootScope.socketService = getSocket($rootScope);
 
 	// -------------------- SOCKET END ---------------------------
 	
-    getAll();
-	
-	$rootScope.socketService();
+    
 
 }
 
