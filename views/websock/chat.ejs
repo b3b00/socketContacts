@@ -1,0 +1,71 @@
+
+
+
+
+<script>
+
+
+$(document).ready(function() {  
+    if(!("WebSocket" in window)){  
+        //$('#chatLog, input, button, #examples').fadeOut("fast");  
+        $('<p>Oh no, you need a browser that supports WebSockets. How about <a href="http://www.google.com/chrome">Google Chrome</a>?</p>').appendTo('#container');  
+    }else{  
+  
+    //The user has WebSockets  
+  
+    connect();  
+  
+
+	}});  
+
+    function connect(){  
+        try{  
+  
+			var socket;  
+			var host = "ws://localhost:1337/websock/chat";  
+			var socket = new WebSocket(host);  
+		  
+				message('<p class="event">Socket Status: '+socket.readyState);  
+		  
+				socket.onopen = function(){  
+					 message('<p class="event">Socket Status: '+socket.readyState+' (open)');  
+				}  
+		  
+				socket.onmessage = function(msg){  
+					 message('<p class="message">Received: '+msg.data);  
+				}  
+		  
+				socket.onclose = function(){  
+					 message('<p class="event">Socket Status: '+socket.readyState+' (Closed)');  
+				}             
+  
+		} catch(exception){  
+			 message('<p>Error'+exception);  
+		}  
+  
+    }  
+
+function scrollDown() {
+	var objDiv = $('#historic');
+    if (objDiv.length > 0)
+        objDiv[0].scrollTop = objDiv[0].scrollHeight;
+}
+
+function sendMessage() {
+	
+}
+
+function enter(e){
+        if(e.keyCode == 13) sendMessage();
+}
+</script>
+
+
+<input type="text" onkeydown="enter(event);" id="outMessage" placeholder="type your message here" class="text ui-widget-content ui-corner-all"> 
+<button value="send" onClick="sendMessage();">send</button>
+
+<div id="historic" style="height:100pt;overflow:auto;width:33%;background-color:#fff">
+<br><br>
+</div>	
+
+

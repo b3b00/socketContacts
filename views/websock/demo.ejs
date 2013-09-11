@@ -1,0 +1,67 @@
+
+
+
+
+<script>
+
+
+
+
+
+
+
+/*
+websocket.onmessage = function(str) {
+	console.log(response);
+	$("#historic").append("<p align='right' class='bubbleIn'>"+response.message+"</p>");	
+	scrollDown();
+};
+*/
+
+/*
+function send() {
+	msg = $('#outMessage').val()
+	content = $("#historic").innerHtml;
+	$("#historic").append("<p align='left' class='bubbleOut'>"+msg+"</p>");
+	scrollDown();	
+}
+*/
+
+function scrollDown() {
+	var objDiv = $('#historic');
+    if (objDiv.length > 0)
+        objDiv[0].scrollTop = objDiv[0].scrollHeight;
+}
+
+function sendMessage() {
+	msg = $('#outMessage').val()
+	content = $("#historic").innerHtml;
+	if (msg.length > 0) {
+		$("#historic").append("<p align='left' class='bubbleOut'>"+msg+"</p>");
+		scrollDown();
+		socket.get('/websock/echo',{
+		  message: msg
+		}, function (response) {
+			console.log(response);
+			$("#historic").append("<p align='right' class='bubbleIn'>"+response.message+"</p>");	
+			scrollDown();
+			
+			
+		});
+	}
+}
+
+function enter(e){
+        if(e.keyCode == 13) sendMessage();
+}
+</script>
+
+
+<input type="text" onkeydown="enter(event);" id="outMessage" placeholder="type your message here" class="text ui-widget-content ui-corner-all"> 
+<button value="send" onClick="sendMessage();">send</button>
+
+<div id="historic" style="height:100pt;overflow:auto;width:33%;background-color:#fff">
+<br><br>
+</div>	
+
+

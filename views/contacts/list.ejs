@@ -1,0 +1,44 @@
+<br><br>
+
+<div ng-controller="ContactsCtrl">
+
+<!--<p style='text-align:center;font-weigh:bold;'>{{message}}</p>-->
+
+<table border="1" style="border-color:black; border-collapse:collapse; border-bottom:black 1px solid" ng-controller="ContactsCtrl">
+    <thead><tr><td>first name</td><td>last name</td><td>phone number</td></tr></thead>
+		
+    <tbody id="contactsTable">
+		<tr ng-repeat="contact in contacts">
+			<td>{{contact.firstName}}</td>
+			<td>{{contact.lastName}}</td>
+			<td>{{contact.phoneNumber}}</td>
+			<td><button ng-click="$parent.rmContact(contact.id)" 
+						style="background:white; cursor:pointer; border:solid 0px white;" 
+						type="button">
+					<img ng-click="rmContact('{{contact.id}}')" 
+						onmouseover="this.style.cursor='pointer'" 
+						onmouseout="this.style.cursor='default'" src="/images/del.png"/>
+				</button>	
+				
+			</td>
+			<td>
+					<button ng-click="openEditDialog(contact)" 
+						style="background:white; cursor:pointer; border:solid 0px white;" 
+						type="button">			
+						<img ng-click="openEditDialog({{contact}})" 
+							onmouseover="this.style.cursor='pointer'" 
+							onmouseout="this.style.cursor='default'" src="/images/edit.png"/>
+					</button>
+			</td>
+		</tr>	
+    </tbody>
+
+</table>   
+             
+<br>
+<br>
+	
+<button class="btn btn-primary" ng-click="openAddDialog()">Add Contact</button>	
+    
+</div>
+
