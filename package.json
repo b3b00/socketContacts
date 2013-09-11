@@ -12,6 +12,7 @@
 		"password-hash" :"*",
 		"sails-mysql": "0.9.2",
 		"socket.io": "0.9.16"
+        "coffee-script":"1.6.3"
     },
     "scripts": {
         "start": "node app.js",
