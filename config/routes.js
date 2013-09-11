@@ -54,18 +54,7 @@ module.exports.routes = {
 	controller : 'contacts',
 	action: 'list'
   },
-/*  '/contacts/getAll' : {
-	controller : 'contacts',
-	action: 'getAll'
-  },
-  '/contacts/delete/:id' : {
-	controller : 'contacts',
-	action : 'remove'
-  },
-  '/contacts/socket' : {
-	controller : 'contacts',
-	action : 'socket'
-  },*/
+
   
   /** websockets */
   
@@ -79,10 +68,7 @@ module.exports.routes = {
 	action : 'echo'
   },
   
-   '/websock/send' : {
-	controller : 'websock',
-	action : 'send'
-  },
+  
   'websock/chat' : {
 	controller : 'websock',
 	action : 'chat'
