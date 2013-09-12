@@ -19,6 +19,8 @@ getSocket = ($rootScope) ->
         contact = data.contact
         console.log data
         $rootScope.contacts = data.contacts
+        angular.element('#waiting_div').hide();
+        angular.element('#contacts_div').show();
 
 
     $socket.on "addContact", (data) ->
@@ -43,4 +45,6 @@ getSocket = ($rootScope) ->
     $socket.on "disconnect", (stream) ->
       console.log "someone disconnected"
 
+  angular.element('#waiting_div').show();
+  angular.element('#contacts_div').hide();    
   $socket

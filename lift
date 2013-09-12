@@ -11,7 +11,7 @@ do
 	
 	OUT_FILE=`echo $C | sed -e 's/\.coffee/\.js/g'` 
 	rm $OUT_FILE
-	echo "compiling $C to $O"
+	echo "compiling $C to $OUT_DIR"
 	coffee -b -o $OUT_DIR -c $C 
 	echo 
 done 
