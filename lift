@@ -1,2 +1,19 @@
+#!/bin/sh 
+
 rm -rf .tmp
+
+COFFEES=`find assets -name *.coffee`
+
+for C in $COFFEES
+do 
+	
+	OUT_DIR=`dirname $C`
+	
+	OUT_FILE=`echo $C | sed -e 's/\.coffee/\.js/g'` 
+	rm $OUT_FILE
+	echo "compiling $C to $O"
+	coffee -b -o $OUT_DIR -c $C 
+	echo 
+done 
+
 sails lift

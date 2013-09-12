@@ -1,9 +1,4 @@
-hello = ->
-  alert 'hello from coffee from socket'
 
-
-
-hello()
 
 getSocket = ($rootScope) ->
   
