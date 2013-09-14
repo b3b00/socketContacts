@@ -3,7 +3,9 @@
 getSocket = ($rootScope) ->
   
   $socket = undefined
-  $socket = io.connect("http://localhost:1336")
+  url = "http://"+document.location.hostname+":1336";
+  console.log("SOCKET URL : "+url);
+  $socket = io.connect(url);
   
   $socket.on "connect", (stream) ->
     

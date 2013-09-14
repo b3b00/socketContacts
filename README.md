@@ -7,4 +7,5 @@
 <li><a href="http://sailsjs.org/">sailsjs</a> pour le back</li>
 <li><a href="http://angularjs.org/">angularjs</a> : pour le front</li>
 <li><a href="http://socket.io/">socket.io</a> : pour les communications sur websocket (font et back)</li>
+<li><a href="https://github.com/padolsey/Sonic">sonic.js</a> : pour l'animation d'attente </li>
 </ul>
