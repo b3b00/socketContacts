@@ -84,9 +84,13 @@ sonic = new Sonic({
 		var sizeMultiplier = 10;
         var radius = sizeMultiplier * (index > 0.5 ? 1-index : index);
         
-        drawFlame.call(this, '#FF6C08', point.x*index, point.y, radius);
+        /*drawFlame.call(this, '#FF6C08', point.x*index, point.y, radius);
         drawFlame.call(this, '#FFD341', point.x, point.y*index, radius);
-        drawFlame.call(this, '#FF3000', point.x, point.y, radius);
+        drawFlame.call(this, '#FF3000', point.x, point.y, radius);*/
+
+        drawFlame.call(this, 'red', point.x*index, point.y, radius);
+        drawFlame.call(this, 'yellow', point.x, point.y*index, radius);
+        drawFlame.call(this, 'blue', point.x, point.y, radius);
 
 	}
 
