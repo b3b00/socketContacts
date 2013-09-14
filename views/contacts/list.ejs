@@ -73,7 +73,7 @@ sonic = new Sonic({
 	pointDistance: 0.01,
 	fps: 20,
 
-	backgroundColor: '#FFFFFF',
+	backgroundColor: 'transparent',
 
 	path: [
 		['arc', 60, 60, 30, 0, 360]
@@ -93,7 +93,11 @@ sonic = new Sonic({
 });
 sonic.play();
 
-document.body.appendChild(sonic.canvas);
+//$("#waiting_div").appendChild(sonic.canvas);
+
+document.getElementById('waiting_div').appendChild(sonic.canvas);
+
+//document.body.appendChild(sonic.canvas);
 
 </script>
 </div>
