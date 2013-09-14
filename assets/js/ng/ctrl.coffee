@@ -21,10 +21,10 @@ ContactsCtrl = ($rootScope, $http, $dialog) ->
 
 	$rootScope.getAll = getAll
 	rmContact = (id) ->
+	  console.log "removeContact "+id	
 	  $rootScope.socketService.emit "removeContact", id
 
-	$rootScope.rmContact = rmContact
-	$rootScope.addContact = addContact
+	$rootScope.rmContact = rmContact  
 
 	###
 	  ---------------------------------------------
