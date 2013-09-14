@@ -16,7 +16,7 @@
 
 module.exports = function (grunt) {
 
-
+  grunt.loadNpmTasks('grunt-contrib-coffee');
 
   /**
    * CSS files to inject in order
@@ -136,6 +136,17 @@ module.exports = function (grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+
+    coffee: {
+      dev: {
+        options: {
+          bare: true
+        },
+        files: {
+          'assets/js/ng/angular-socket.js': ['assets/js/ng/*.coffee']
+        }
+      }
+    },
 
     copy: {
       dev: {
@@ -394,6 +405,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('compileAssets', [
     'clean:dev',
+    'coffee',
     'jst:dev',
     'less:dev',
     'copy:dev'
