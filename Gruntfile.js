@@ -143,7 +143,9 @@ module.exports = function (grunt) {
           bare: true
         },
         files: {
-          'assets/js/ng/angular-socket.js': ['assets/js/ng/*.coffee']
+          'assets/js/ng/app.js': ['assets/js/ng/app.coffee'],
+          'assets/js/ng/ctrl.js': ['assets/js/ng/ctrl.coffee'],
+          'assets/js/ng/socketService.js': ['assets/js/ng/socketService.coffee']
         }
       }
     },

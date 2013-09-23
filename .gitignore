@@ -1,9 +1,10 @@
 ########################
 # coffee compile
 ########################
-#assets/js/ng/ctrl.js
-#assets/js/ng/socketService.js
-#assets/js/ng/angular-socket.js
+assets/js/ng/ctrl.js
+assets/js/ng/app.js
+assets/js/ng/socketService.js
+assets/js/ng/angular-socket.js
 
 ########################
 # sails

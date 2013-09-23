@@ -9,7 +9,7 @@
 
 ContactsCtrl = ($rootScope, $http, $dialog, Socket) -> 
 	
-	Socket.testIt()
+	#Socket.testIt()
 
 	addContact = (serialForm) ->
   $http.post("/contacts/add", serialForm).success (data) ->
@@ -23,7 +23,7 @@ ContactsCtrl = ($rootScope, $http, $dialog, Socket) ->
 	$rootScope.getAll = getAll
 	rmContact = (id) ->
 	  console.log "removeContact "+id	
-	  $rootScope.socketService.emit "removeContact", id
+	  Socket.emit "removeContact", id
 
 	$rootScope.rmContact = rmContact  
 
@@ -50,7 +50,7 @@ ContactsCtrl = ($rootScope, $http, $dialog, Socket) ->
 	  d.open().then (result) ->
 	    #console.log result
 	    if result and result.firstName and result.lastName and result.phoneNumber
-	    	$rootScope.socketService.emit "addContact", result  
+	    	Socket.emit "addContact", result  
   
 
 	###	  
@@ -83,7 +83,7 @@ ContactsCtrl = ($rootScope, $http, $dialog, Socket) ->
 		$rootScope.editPhoneNumber = editContact.phoneNumber
 		d.open().then (result) ->
 		    if result and result.firstName and result.lastName and result.phoneNumber and result.id
-		    	$rootScope.socketService.emit "editContact", result            
+		    	Socket.emit "editContact", result            
 			
 
 	###
@@ -99,7 +99,7 @@ ContactsCtrl = ($rootScope, $http, $dialog, Socket) ->
 	---------------------------------------------
 	### 		
 
-	#$rootScope.socketService = getSocket($rootScope)
+	#Socket = getSocket($rootScope)
 
 
 	###
