@@ -1,5 +1,4 @@
-angular.module "contacts", ["ui.bootstrap"]
-
+#angular.module "contacts", ["ui.bootstrap"]
 
 ### ********************************************************
 ### 
@@ -8,8 +7,10 @@ angular.module "contacts", ["ui.bootstrap"]
 ### ********************************************************
 ###
 
-ContactsCtrl = ($rootScope, $http, $dialog) -> 
+ContactsCtrl = ($rootScope, $http, $dialog, Socket) -> 
 	
+	Socket.testIt()
+
 	addContact = (serialForm) ->
   $http.post("/contacts/add", serialForm).success (data) ->
     $rootScope.contacts = data
@@ -98,7 +99,7 @@ ContactsCtrl = ($rootScope, $http, $dialog) ->
 	---------------------------------------------
 	### 		
 
-	$rootScope.socketService = getSocket($rootScope)
+	#$rootScope.socketService = getSocket($rootScope)
 
 
 	###
