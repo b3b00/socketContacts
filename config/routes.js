@@ -32,67 +32,13 @@ module.exports.routes = {
   // located at `views/home/index.ejs`
   // 
   // (This would also work if you had a file at: `/views/home.ejs`)
-  '/': {
-    view: 'home/index'
-  },
-  '/hello' :{
-	controller : 'hello',
-	action: 'index'
-  },
-  '/hi' :{
-	controller : 'hello',
-	action: 'index'
-  },
-  '/users' :{
-	controller : 'hello',
-	action: 'users'
-  },
   
   /* contacts */
   
   '/contacts/list' : {
 	controller : 'contacts',
 	action: 'list'
-  },
-
-  
-  /** websockets */
-  
-  '/websock/demo' : {
-	controller : 'websock',
-	action : 'demo'
-  },
-  
-  '/websock/echo' : {
-	controller : 'websock',
-	action : 'echo'
-  },
-  
-  
-  'websock/chat' : {
-	controller : 'websock',
-	action : 'chat'
-  },
-  
-  
-  /** chat attempt */
-  
-   '/chat/' : {
-         controller: 'main',
-         action: 'index'
-    },
-    '/chat/signup' : {
-         controller: 'main',
-         action: 'signup'
-    },
-    '/chat/login' : {
-         controller: 'main',
-         action: 'login'
-    },
-    '/chat/chat' : {
-         controller: 'main',
-         action: 'chat'
-    }
+  }
   
 };
 
