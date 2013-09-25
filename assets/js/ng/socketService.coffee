@@ -1,18 +1,22 @@
 "use strict"
 
-# Services 
 
-#
-#angular.module('socketServices', []).
-#    factory('Socket', function(){
-#  return {
-#      testIt : function() {
-#  		console.log('my first working angular service');
-#  	} 
-#  }
-#});
-#
-angular.module("socketServices", []).factory "Socket", ($rootScope) ->
+
+angular.module("socketServices", []).factory "Socket", ($rootScope, $timeout) ->
+
+  cleanMessages = () ->     
+      $rootScope.alerts = []
+
+
+  addAlert = (message) ->    
+      $rootScope.alerts = []
+      $rootScope.alerts.push 
+          msg: ''+message
+          type: 'success' 
+      console.log "NEW ALERT :: "+message
+      $timeout cleanMessages , 3000
+    
+
   $socket = undefined
   url = undefined
   $socket = undefined
@@ -43,6 +47,7 @@ angular.module("socketServices", []).factory "Socket", ($rootScope) ->
         console.log "SOCKET :: [addContact] message"
         contact = undefined
         contact = data.contact
+        addAlert "Nouveau contact : "+contact.firstName+" "+contact.lastName
         console.log data
         $rootScope.contacts = data.contacts
 
@@ -53,14 +58,17 @@ angular.module("socketServices", []).factory "Socket", ($rootScope) ->
         contact = undefined
         contact = data.contact
         $rootScope.contacts = data.contacts
+        addAlert "Suppression de : "+contact.firstName+" "+contact.lastName
+
 
 
     $socket.on "editContact", (data) ->
       $rootScope.$apply ->
         console.log "SOCKET :: [editContact] message"
         contact = undefined
-        contact = data.contact
-        $rootScope.contacts = data.contacts
+        contact = data['old-contact']
+        $rootScope.contacts = data.contacts        
+        addAlert "Modification de : "+contact.firstName+" "+contact.lastName
 
 
     $socket.on "disconnect", (stream) ->

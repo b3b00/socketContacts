@@ -11,6 +11,14 @@ ContactsCtrl = ($rootScope, $http, $dialog, Socket) ->
 	
 	#Socket.testIt()
 
+
+	$rootScope.alerts = []
+	
+
+	$rootScope.closeAlert = (index) ->
+	  $rootScope.alerts.splice index, 1
+
+
 	addContact = (serialForm) ->
   $http.post("/contacts/add", serialForm).success (data) ->
     $rootScope.contacts = data

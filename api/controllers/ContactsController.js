@@ -99,6 +99,12 @@ io.sockets.on('connection', function (socket) {
 	
 	Contact.findOne(ctct.id).done(function(err, contact) {
 		console.log('error on find('+ctct.id+') ? '+err);
+		oldContact = {
+			firstName : contact.firstName,
+			lastName : contact.lastName,
+			phoneNumber : contact.phoneNumber,
+		}
+
 		// destroy the record
 		if (contact != undefined) {
 			contact.firstName = ctct.firstName;
@@ -107,7 +113,7 @@ io.sockets.on('connection', function (socket) {
 			contact.save(function(err) {
 				console.log('error on update : '+err);		
 				if (err != undefined || err == null) {				
-					emitContacts('editContact', {'contact':contact}, socket);
+					emitContacts('editContact', {'old-contact':oldContact,'contact':contact}, socket);
 				}				
 			});			
 		}		

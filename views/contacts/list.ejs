@@ -6,6 +6,10 @@
 
 <!--<p style='text-align:center;font-weigh:bold;'>{{message}}</p>-->
 
+<div style="width:30%; margin:0 auto;">
+<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)" style='font-weight:bold;font-size:10pt'>{{alert.msg}}</alert>
+</div>
+
 <table border="1" style="border-color:black; border-collapse:collapse; border-bottom:black 1px solid" ng-controller="ContactsCtrl">
     <thead><tr><td>first name</td><td>last name</td><td>phone number</td></tr></thead>
 		
