@@ -52,16 +52,16 @@ io.sockets.on('connection', function (socket) {
   * [deleteContact]
   */
   socket.on('removeContact', function(contactId){
-	console.log("removeContact broadcasted");
+	//console.log("removeContact broadcasted");
 	
-	console.log('removing id :: '+contactId);
+	//console.log('removing id :: '+contactId);
 	Contact.findOne(contactId).done(function(err, contact) {
-		console.log('error on find('+contactId+') ? '+err);
+		//console.log('error on find('+contactId+') ? '+err);
 		// destroy the record
 		if (contact != undefined) {
 			Contact.publish(null,'DEL Contact ::'+contact.firstName+ ' '+contact.lastName+'::',null);
 			contact.destroy(function(err) {
-				console.log('error on destroy : '+err);		
+				//console.log('error on destroy : '+err);		
 				if (err != undefined || err == null) {				
 					emitContacts('removeContact', {'contact':contact}, socket);
 				}				
@@ -75,7 +75,7 @@ io.sockets.on('connection', function (socket) {
   * [addContact]
   */
   socket.on('addContact', function(ctct){
-	console.log("onUserAdded broadcasted");
+	//console.log("onUserAdded broadcasted");
 	
 	Contact.create({
 		  firstName: ctct.firstName,
@@ -83,8 +83,8 @@ io.sockets.on('connection', function (socket) {
 		  phoneNumber: ctct.phoneNumber
 		}).done(function(err, contact) {	
 			if (err != undefined || err == null) {
-				console.log('publishing to websockets : [NEW Contact ::'+contact.firstName+ ' '+contact.lastName+'::]'); 
-				console.log(Contact.subscribers());
+				//console.log('publishing to websockets : [NEW Contact ::'+contact.firstName+ ' '+contact.lastName+'::]'); 
+				//console.log(Contact.subscribers());
 				emitContacts('addContact', {'contact':contact}, socket);
 			}		
 			emitContacts('addContact', {'contact':contact}, socket);
@@ -95,10 +95,10 @@ io.sockets.on('connection', function (socket) {
   * [editContact]
   */
   socket.on('editContact', function(ctct){
-	console.log("onUserEdited broadcasted");
+	//console.log("onUserEdited broadcasted");
 	
 	Contact.findOne(ctct.id).done(function(err, contact) {
-		console.log('error on find('+ctct.id+') ? '+err);
+		//console.log('error on find('+ctct.id+') ? '+err);
 		oldContact = {
 			firstName : contact.firstName,
 			lastName : contact.lastName,
@@ -111,7 +111,7 @@ io.sockets.on('connection', function (socket) {
 			contact.lastName = ctct.lastName;
 			contact.phoneNumber = ctct.phoneNumber;
 			contact.save(function(err) {
-				console.log('error on update : '+err);		
+				//console.log('error on update : '+err);		
 				if (err != undefined || err == null) {				
 					emitContacts('editContact', {'old-contact':oldContact,'contact':contact}, socket);
 				}				
